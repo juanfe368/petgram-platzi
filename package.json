@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
+    "lint": "standard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "@babel/preset-react": "^7.16.0",
     "babel-loader": "^8.2.3",
     "html-webpack-plugin": "^5.5.0",
+    "standard": "^16.0.4",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0",
@@ -33,5 +35,13 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "/api/**"
+    ]
+  },
+  "eslintConfig": {
+    "extends": ["./node_modules/standard/eslintrc.json"]
   }
 }
