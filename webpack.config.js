@@ -8,6 +8,9 @@ module.exports = {
       template: 'src/index.html'
     })
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
   module: {
     rules: [
       {
