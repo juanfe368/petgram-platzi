@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Category } from '../Category'
 import { List, Item } from './styles'
-import Datajson from '../../Data/db'
+// import Datajson from '../../Data/db'
 
 export const ListOfCategories = () => {
+  const [categories, setCategories] = useState([])
+
+  useEffect(function () {
+    window.fetch('https://petgram-server-edsf8xpy2.now.sh/categories')
+      .then(res => res.json())
+      .then(response => {
+        setCategories(response)
+      })
+  }, [])
   return (
     <List>
-      {Datajson.categories.map((category) => (
+      {categories.map((category) => (
         <Item key={category.id}>
           <Category {...category} />
         </Item>
