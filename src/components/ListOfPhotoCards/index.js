@@ -1,14 +1,31 @@
 import React from 'react'
 import { PhotoCard } from '../PhotoCard'
-import { grapqhl } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import { useQuery, gql } from '@apollo/client'
 
-const withPhotos = graphql(gql``)
+const WITH_PHOTOS = gql`
+  # Write your query or mutation here
+  query getPhotos {
+    photos {
+      id
+      categoryId
+      src
+      likes
+      userId
+      liked
+    }
+  }
+`
 
-export const ListOfPhotoCards = () => {
+const ListOfPhotoCardsComponent = () => {
+  const { data, loading, error } = useQuery(WITH_PHOTOS)
+  if (loading) return 'Loading...'
+  if (error) return <pre>{error.message}</pre>
+
   return (
     <ul>
-      {[1, 2, 3].map(id => <PhotoCard key={id} id={id} />)}
+      {data.photos.map(photo => <PhotoCard key={photo.id} {...photo} />)}
     </ul>
   )
 }
+
+export const ListOfPhotoCards = ListOfPhotoCardsComponent
